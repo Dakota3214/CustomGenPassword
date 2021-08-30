@@ -9,7 +9,7 @@ var btn = document.querySelector(".btn");
 
 userAnswers = {
 answerOfLength: 0,
-arrayAll = "",
+arrayAll: "",
 answerOfUppercase: false,
 answerOfLowercase: false,
 answerOfSpecial: false,
@@ -42,7 +42,7 @@ if (value >= 8 && value <= 128) {
 
 // function check() {
 //   alert("yoooooooooooo");
-//   alert("length of password will be " + userAnswers.answerOfLength)
+  // alert("length of password will be " + userAnswers.answerOfLength)
 // }
   
   
@@ -113,21 +113,11 @@ function questionNumeric() {
   }
   return value;
 };
-function Confirmation(value) {
-if (userAnswers.answerOfUppercase === false || userAnswers.answerOfLowerCase === false || userAnswers.answerOfSpecial === false || userAnswers.answerOfNumeric === false) {
-  alert("You must choose at least one option in order to generate your password!");
-  startUserAnswers();
-}
-else {
-  alert("Thank you! Your password will now be generated!");
-  
-}
 
-function randomPassGen(value) {
 
-    Mathfloor(Math.random()* value);
-
-  }
+function randomPassGen(length) {
+    var x = Math.floor(Math.random()* length);
+    return x;
 };
 
 function startUserAnswers() {
@@ -136,16 +126,25 @@ function startUserAnswers() {
   userAnswers.answerOfLowerCase = questionLowercase();
   userAnswers.answerOfSpecial = questionSpecial();
   userAnswers.answerOfNumeric = questionNumeric();
-  Confirmation();
 };
 
 function generatePassword() {
   startUserAnswers();
 
-  for(i = 0; i < userAnswers.answerOfLength; i++) {
-    var value = randomPassGen(userAnswers.arrayAll.value);
-    userAnswers.randomPass = 
+  if (userAnswers.answerOfUppercase === false || userAnswers.answerOfLowerCase === false || userAnswers.answerOfSpecial === false || userAnswers.answerOfNumeric === false) {
+    alert("You must choose at least one option in order to generate your password!");
+    startUserAnswers();
+
   }
+    else {
+      alert("Thank you! Your password will now be generated!");
+      for(i = 0; i < userAnswers.answerOfLength; i++) {
+        var x = randomPassGen(userAnswers.arrayAll.length);
+        userAnswers.randomPass = userAnswers.randomPass.concat(userAnswers.arrayAll[x]);
+      }
+    }
+    return userAnswers.randomPass;
+  
 };
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
