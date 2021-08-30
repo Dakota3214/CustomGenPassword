@@ -9,10 +9,12 @@ var btn = document.querySelector(".btn");
 
 userAnswers = {
 answerOfLength: 0,
+arrayAll = "",
 answerOfUppercase: false,
 answerOfLowercase: false,
 answerOfSpecial: false,
 answerOfNumeric: false,
+randomPass: "", 
 };
 
 
@@ -51,6 +53,7 @@ function questionUppercase() {
     
   if (value === true) {
     alert("Your password will consist of uppercase letters.");
+    userAnswers.arrayAll = userAnswers.arrayAll.concat(arrayUpperCase);
   }
     else {
       
@@ -66,6 +69,7 @@ function questionLowercase() {
 
   if (value === true) {
     alert("Your password will consist of lowercase letters.");
+    userAnswers.arrayAll = userAnswers.arrayAll.concat(arrayLowerCase);
   }
   else {
     
@@ -83,6 +87,7 @@ function questionSpecial() {
   
   if (value === true) {
     alert("Your password will consist of special characters.");
+    userAnswers.arrayAll = userAnswers.arrayAll.concat(arraySpecialcase);
   }
   else {
     
@@ -99,6 +104,7 @@ function questionNumeric() {
 
   if(value === true) {
     alert("Your password will consist of numeric characters.");
+    userAnswers.arrayAll = userAnswers.arrayAll.concat(arrayNumeric);
   }
   else {
     
@@ -110,23 +116,37 @@ function questionNumeric() {
 function Confirmation(value) {
 if (userAnswers.answerOfUppercase === false || userAnswers.answerOfLowerCase === false || userAnswers.answerOfSpecial === false || userAnswers.answerOfNumeric === false) {
   alert("You must choose at least one option in order to generate your password!");
-  generatePassword();
+  startUserAnswers();
 }
 else {
-  Math.floor(Math.random()* value)
+  alert("Thank you! Your password will now be generated!");
+  
 }
 
+function randomPassGen(value) {
+
+    Mathfloor(Math.random()* value);
+
+  }
 };
 
-function generatePassword() {
+function startUserAnswers() {
   userAnswers.answerOfLength = questionLength();
   userAnswers.answerOfUppercase = questionUppercase();
   userAnswers.answerOfLowerCase = questionLowercase();
   userAnswers.answerOfSpecial = questionSpecial();
   userAnswers.answerOfNumeric = questionNumeric();
-  
-}
+  Confirmation();
+};
 
+function generatePassword() {
+  startUserAnswers();
+
+  for(i = 0; i < userAnswers.answerOfLength; i++) {
+    var value = randomPassGen(userAnswers.arrayAll.value);
+    userAnswers.randomPass = 
+  }
+};
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
